@@ -1,24 +1,36 @@
 {
   "dependencies": {
+    "bcrypt": "^5.0.0",
+    "class-validator": "^0.12.2",
+    "dotenv": "^8.2.0",
     "graphql-tools": "^6.0.12",
     "graphql-yoga": "^1.18.3",
     "merge-graphql-schemas": "^1.7.8",
+    "pg": "^8.2.1",
     "ts-node": "^8.10.2",
     "tslint": "^6.1.2",
+    "typeorm": "^0.2.25",
     "typescript": "^3.9.6"
   },
   "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
     "@types/cors": "^2.8.6",
     "@types/helmet": "^0.0.47",
     "@types/morgan": "^1.9.1",
     "@types/node": "^14.0.18",
+    "babel-runtime": "^6.26.0",
     "cors": "^2.8.5",
+    "gql-merge": "^0.0.6",
+    "graphql-to-typescript": "^0.1.2",
     "helmet": "^3.23.3",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "tslint-config-prettier": "^1.18.0"
   },
   "scripts": {
-    "dev": "cd src && nodemon --exec ts-node index.ts -e ts,graphql"
+    "predev" : "yarn run types",
+    "dev": "cd src && nodemon --exec ts-node index.ts -e ts,graphql",
+    "pretypes": "gql-merge --out-file ./src/schema.graphql ./src/api/**/*.graphql",
+    "types": "graphql-to-typescript ./src/schema.graphql ./src/types/graph.d.ts"
   }
 }
