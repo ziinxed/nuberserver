@@ -9,7 +9,7 @@ import {
 } from "typeorm";
 import { verificationTarget } from "src/types/types";
 
-const Phone = "PHONE";
+const PHONE = "PHONE";
 const EMAIL = "EMAIL";
 @Entity()
 class Verification extends BaseEntity {
@@ -34,7 +34,7 @@ class Verification extends BaseEntity {
       this.key = Math.floor(
         Math.random() * 100000
       ).toString();
-    } else {
+    } else if (this.target === EMAIL) {
       this.key = Math.random().toString(36).substr(2);
     }
   }
